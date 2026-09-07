@@ -15,6 +15,7 @@ export default {
       fontFamily: {
         headings: ['Great Vibes', 'cursive'],
         body: ['Cormorant Garamond', 'serif'],
+        devanagari: ['Noto Serif Devanagari', 'serif'],
       },
       boxShadow: {
         soft: '0 15px 40px -10px rgba(0,0,0,0.08)',

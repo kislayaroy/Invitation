@@ -1,5 +1,6 @@
 import { useCountdown } from '../hooks/useCountdown';
 import { wedding } from '../data/wedding';
+import { RingExchange } from './RingExchange';
 
 export function Hero() {
   const countdown = useCountdown(wedding.eventDate);
@@ -18,12 +19,22 @@ export function Hero() {
 
       <div className="absolute inset-0 z-0 bg-black/10" />
 
-      <div className="relative z-10 mx-auto mt-8 flex w-full max-w-[90%] flex-col items-center rounded-[2rem] border border-white/80 bg-gradient-to-b from-white/95 to-white/90 px-6 pb-16 pt-12 shadow-2xl backdrop-blur-xl md:max-w-md">
-        <img
-          src={wedding.media.ganesh}
-          alt="Lord Ganesha"
-          className="mb-6 h-28 w-auto object-contain md:h-32"
-        />
+      <div className="hero-card relative z-10 mx-auto mt-8 flex w-full max-w-[90%] flex-col items-center px-6 pb-16 pt-12 md:max-w-md">
+        <div className="ganesh-frame mb-3">
+          <img
+            src={wedding.media.ganesh}
+            alt="Lord Ganesha"
+            className="h-40 w-32 object-cover object-[center_18%] md:h-44 md:w-36"
+          />
+        </div>
+        <p className="mb-5 font-devanagari text-lg font-semibold tracking-wide text-primary-accent md:text-xl">
+          {wedding.ganeshMantra}
+        </p>
+        <div className="hero-ornament mb-6">
+          <span />
+          <i>✦</i>
+          <span />
+        </div>
 
         <h1 className="mb-0 font-headings text-[4rem] leading-none text-primary-accent drop-shadow-sm md:text-[5rem]">
           {wedding.groom.fullName}
@@ -51,12 +62,15 @@ export function Hero() {
             {wedding.expiredMessage}
           </p>
         ) : (
-          <div className="mx-auto grid w-full max-w-[80%] grid-cols-2 gap-x-6 gap-y-8 pb-2">
-            <CountdownCell value={countdown.days} label="Days" />
-            <CountdownCell value={countdown.hours} label="Hours" />
-            <CountdownCell value={countdown.minutes} label="Mins" />
-            <CountdownCell value={countdown.seconds} label="Secs" />
-          </div>
+          <>
+            <RingExchange />
+            <div className="mx-auto grid w-full max-w-[80%] grid-cols-2 gap-x-6 gap-y-8 pb-2">
+              <CountdownCell value={countdown.days} label="Days" />
+              <CountdownCell value={countdown.hours} label="Hours" />
+              <CountdownCell value={countdown.minutes} label="Mins" />
+              <CountdownCell value={countdown.seconds} label="Secs" />
+            </div>
+          </>
         )}
 
         <div className="absolute -bottom-5 left-1/2 z-20 flex -translate-x-1/2 transform flex-col items-center">
