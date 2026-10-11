@@ -1,12 +1,11 @@
 import { Divider } from './Divider';
 import { MapButton } from './MapButton';
-import { Page, ScrollHint } from './Page';
 import { wedding } from '../data/wedding';
 
 export function Venue() {
   return (
-    <Page className="bg-white">
-      <div className="relative w-full max-w-xl px-2 text-center">
+    <section className="border-b border-borders-dividers bg-white py-20 text-center md:py-28">
+      <div className="container mx-auto max-w-3xl px-6">
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-secondary-accent">
           Join Us
         </p>
@@ -16,12 +15,16 @@ export function Venue() {
 
         <Divider className="mb-8" />
 
-        <div className="rounded-2xl border border-borders-dividers/50 bg-bg-primary p-8 shadow-soft md:p-12">
+        <p className="mx-auto mb-10 max-w-2xl font-body text-xl italic leading-relaxed text-text-secondary md:text-2xl">
+          We are thrilled to invite you to celebrate our special day at the beautiful
+        </p>
+
+        <div className="inline-block w-full max-w-xl rounded-2xl border border-borders-dividers/50 bg-bg-primary p-8 shadow-soft md:p-12">
           <h3 className="font-body text-3xl font-bold text-primary-accent md:text-4xl">
             {wedding.venue.name}
           </h3>
           {wedding.venue.location && (
-            <p className="mt-3 font-body text-lg leading-relaxed text-text-secondary md:text-xl">
+            <p className="mt-3 font-body text-lg uppercase tracking-widest text-text-secondary md:text-xl">
               {wedding.venue.location}
             </p>
           )}
@@ -32,7 +35,6 @@ export function Venue() {
           )}
         </div>
       </div>
-      <ScrollHint />
-    </Page>
+    </section>
   );
 }

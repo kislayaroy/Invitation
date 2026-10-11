@@ -1,9 +1,7 @@
-import { Page } from './Page';
-
 export function Blessings() {
   return (
-    <Page className="bg-primary-accent">
-      <div className="relative w-full max-w-xl px-2 pb-8 text-center text-white">
+    <section className="relative border-t border-borders-dividers bg-primary-accent py-20 text-white md:py-28">
+      <div className="container mx-auto px-6 pb-10 text-center">
         <h2 className="mb-6 font-headings text-5xl text-secondary-accent md:text-6xl">
           With Love & Blessings
         </h2>
@@ -16,11 +14,10 @@ export function Blessings() {
           <span className="mx-4 text-2xl text-secondary-accent">♥</span>
           <div className="h-[1px] w-16 bg-secondary-accent" />
         </div>
-        <p className="font-headings text-4xl text-secondary-accent md:text-5xl">Our Family</p>
-        <p className="mt-4 font-body text-sm font-semibold uppercase tracking-[0.3em] text-secondary-accent md:text-base">
+        <p className="mb-4 font-body text-sm font-semibold uppercase tracking-[0.3em] text-secondary-accent md:text-base">
           Together with our families
         </p>
       </div>
-    </Page>
+    </section>
   );
 }
