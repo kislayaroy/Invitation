@@ -9,7 +9,10 @@ import { wedding } from './data/wedding';
 
 export default function App() {
   const audioRef = useRef(null);
-  const [showInvitation, setShowInvitation] = useState(false);
+  const [showInvitation, setShowInvitation] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return new URLSearchParams(window.location.search).get('open') === '1';
+  });
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {

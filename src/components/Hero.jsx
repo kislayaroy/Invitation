@@ -1,9 +1,36 @@
+import { useRef, useState } from 'react';
+import { toPng } from 'html-to-image';
 import { useCountdown } from '../hooks/useCountdown';
 import { wedding } from '../data/wedding';
 import { RingExchange } from './RingExchange';
 
 export function Hero() {
   const countdown = useCountdown(wedding.eventDate);
+  const cardRef = useRef(null);
+  const [saving, setSaving] = useState(false);
+
+  const saveInviteImage = async () => {
+    if (!cardRef.current || saving) return;
+    setSaving(true);
+
+    try {
+      const dataUrl = await toPng(cardRef.current, {
+        pixelRatio: 2,
+        cacheBust: true,
+        backgroundColor: '#fffdf8',
+        filter: (node) => !node.classList?.contains('no-capture'),
+      });
+
+      const link = document.createElement('a');
+      link.download = 'kislaya-kanak-engagement.png';
+      link.href = dataUrl;
+      link.click();
+    } catch (error) {
+      console.error('Could not save invite image:', error);
+    } finally {
+      setSaving(false);
+    }
+  };
 
   return (
     <section className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden py-16 text-center">
@@ -19,7 +46,10 @@ export function Hero() {
 
       <div className="absolute inset-0 z-0 bg-black/10" />
 
-      <div className="hero-card relative z-10 mx-auto mt-8 flex w-full max-w-[90%] flex-col items-center px-6 pb-16 pt-12 md:max-w-md">
+      <div
+        ref={cardRef}
+        className="hero-card relative z-10 mx-auto mt-8 flex w-full max-w-[90%] flex-col items-center px-6 pb-16 pt-12 md:max-w-md"
+      >
         <div className="ganesh-frame mb-3">
           <img
             src={wedding.media.ganesh}
@@ -50,8 +80,11 @@ export function Hero() {
           <p className="mb-4 font-headings text-4xl text-secondary-accent md:text-5xl">
             {wedding.tagline}
           </p>
-          <p className="mb-6 font-body text-sm font-semibold uppercase tracking-[0.2em] text-primary-accent lining-nums md:text-base">
+          <p className="mb-2 font-body text-sm font-semibold uppercase tracking-[0.2em] text-primary-accent lining-nums md:text-base">
             {wedding.dateLabel}
+          </p>
+          <p className="mb-6 font-body text-base font-semibold uppercase tracking-[0.18em] text-secondary-accent lining-nums">
+            {wedding.timeLabel}
           </p>
         </div>
 
@@ -73,7 +106,16 @@ export function Hero() {
           </>
         )}
 
-        <div className="absolute -bottom-5 left-1/2 z-20 flex -translate-x-1/2 transform flex-col items-center">
+        <button
+          type="button"
+          onClick={saveInviteImage}
+          disabled={saving}
+          className="no-capture mt-10 rounded-full bg-primary-accent px-8 py-3 font-body text-xs font-bold uppercase tracking-[0.22em] text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-opacity-90 disabled:opacity-70"
+        >
+          {saving ? 'Saving...' : 'Save as Image'}
+        </button>
+
+        <div className="no-capture absolute -bottom-5 left-1/2 z-20 flex -translate-x-1/2 transform flex-col items-center">
           <div className="flex items-center justify-center rounded-full border border-borders-dividers/50 bg-white/95 px-8 py-2.5 shadow-md backdrop-blur-md">
             <p className="font-body text-xs font-bold uppercase tracking-[0.25em] text-primary-accent">
               Scroll

@@ -24,7 +24,7 @@ export function Venue() {
             {wedding.venue.name}
           </h3>
           {wedding.venue.location && (
-            <p className="mt-3 font-body text-lg uppercase tracking-widest text-text-secondary md:text-xl">
+            <p className="mt-3 font-body text-lg leading-relaxed text-text-secondary md:text-xl">
               {wedding.venue.location}
             </p>
           )}

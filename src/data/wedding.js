@@ -14,7 +14,8 @@ export const wedding = {
   ganeshMantra: 'श्री गणेशाय नमः',
   tagline: 'Baat Pakki',
   dateLabel: '23rd October 2026',
-  eventDate: 'October 23, 2026 18:00:00 GMT+0530',
+  timeLabel: '2:00 PM Onwards',
+  eventDate: 'October 23, 2026 14:00:00 GMT+0530',
   expiredMessage: 'Baat Pakki',
   parents: {
     groom: 'Ravindra Nath Roy & Smt. Aishwarya Roy',
@@ -22,9 +23,10 @@ export const wedding = {
   },
   venue: {
     heading: 'Engagement Venue',
-    name: 'Marwardi Seva Sadan',
-    location: '',
-    mapsUrl: '',
+    name: 'Terapanth Bhawan',
+    location: 'Railway Station Road, Araria, Bihar',
+    mapsUrl:
+      'https://www.google.com/maps/search/?api=1&query=Terapanth+Bhawan+Railway+Station+Road+Araria+Bihar',
   },
   media: {
     ganesh: '/ganesh.jpg',
